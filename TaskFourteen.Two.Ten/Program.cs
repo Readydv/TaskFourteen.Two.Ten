@@ -36,7 +36,14 @@ namespace TaskFourteen.Two.Ten
                 // если соответствует - запускаем вывод
                 else
                 {
-                    var pageContent = phoneBook.Skip((pageNumber - 1) * 2).Take(2);
+                    // Сортировка сперва по имени, а затем по фамилии
+                    var sorterBook = phoneBook.OrderBy(s => s.Name)
+                        .ThenBy(s => s.LastName);
+
+                    var pageContent = sorterBook.Skip((pageNumber - 1) * 2).Take(2);
+
+                    
+
                     Console.WriteLine();
 
                     foreach (var content in pageContent)
